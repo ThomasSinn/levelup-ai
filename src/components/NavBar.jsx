@@ -9,6 +9,7 @@ export default function NavBar() {
     { label: "IC Quiz", to: "/quiz?type=ic" },
     { label: "Manager Quiz", to: "/quiz?type=manager" },
     { label: "Team Dashboard", to: "/manager-dashboard" },
+    { label: "Monthly Digest", to: "/monthly-digest" },
   ];
 
   return (

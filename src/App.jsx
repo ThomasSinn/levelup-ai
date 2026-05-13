@@ -10,6 +10,7 @@ import Quiz from './pages/Quiz';
 import Results from './pages/Results';
 import NavBar from './components/NavBar';
 import ManagerDashboard from './pages/ManagerDashboard';
+import MonthlyDigest from './pages/MonthlyDigest';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -40,6 +41,7 @@ const AuthenticatedApp = () => {
           <Route path="/quiz" element={<Quiz />} />
           <Route path="/results/:id" element={<Results />} />
           <Route path="/manager-dashboard" element={<ManagerDashboard />} />
+          <Route path="/monthly-digest" element={<MonthlyDigest />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>
