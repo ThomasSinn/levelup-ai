@@ -2,10 +2,13 @@ import { useState } from "react";
 import { base44 } from "@/api/base44Client";
 import { Mail, RefreshCw, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import MemberDetailPanel from "@/components/dashboard/MemberDetailPanel";
+import { AnimatePresence } from "framer-motion";
 
 export default function DigestTab({ me, allMyTeam }) {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
+  const [selectedMember, setSelectedMember] = useState(null);
 
   const handleGenerate = async () => {
     setLoading(true);
@@ -54,23 +57,44 @@ export default function DigestTab({ me, allMyTeam }) {
         )}
       </div>
 
-      {/* Team snapshot */}
-      <div className="card-glow rounded-xl p-6 glass">
-        <h3 className="font-space font-semibold text-foreground mb-4">Team Snapshot ({allMyTeam.length} members)</h3>
-        <div className="divide-y divide-border">
-          {allMyTeam.map(m => (
-            <div key={m.id} className="flex items-center justify-between py-3 text-sm">
-              <div>
-                <span className="text-foreground font-medium">{m.full_name}</span>
-                <span className="text-muted-foreground ml-2">{m.role}</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="text-muted-foreground">{m.ai_tier ?? "—"}</span>
-                <span className="text-foreground font-medium">{m.ai_score ?? "—"}</span>
-              </div>
-            </div>
-          ))}
+      {/* Team snapshot + detail panel */}
+      <div className="flex gap-6 items-start">
+        <div className="flex-1 card-glow rounded-xl p-6 glass">
+          <h3 className="font-space font-semibold text-foreground mb-4">Team Snapshot ({allMyTeam.length} members)</h3>
+          <div className="divide-y divide-border">
+            {allMyTeam.map(m => (
+              <button
+                key={m.id}
+                onClick={() => setSelectedMember(prev => prev?.id === m.id ? null : m)}
+                className={`w-full flex items-center justify-between py-3 text-sm text-left transition-colors rounded-lg px-2 -mx-2 ${
+                  selectedMember?.id === m.id
+                    ? "bg-primary/10 text-primary"
+                    : "hover:bg-secondary/50"
+                }`}
+              >
+                <div>
+                  <span className="text-foreground font-medium">{m.full_name}</span>
+                  <span className="text-muted-foreground ml-2">{m.role}</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-muted-foreground">{m.ai_tier ?? "—"}</span>
+                  <span className="text-foreground font-medium">{m.ai_score ?? "—"}</span>
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
+
+        <AnimatePresence>
+          {selectedMember && (
+            <div className="w-[420px] shrink-0">
+              <MemberDetailPanel
+                member={selectedMember}
+                onClose={() => setSelectedMember(null)}
+              />
+            </div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );
