@@ -1,0 +1,54 @@
+{
+  "name": "UserAssessment",
+  "type": "object",
+  "properties": {
+    "user_type": {
+      "type": "string",
+      "enum": [
+        "ic",
+        "manager"
+      ],
+      "description": "Individual contributor or manager"
+    },
+    "answers": {
+      "type": "object",
+      "description": "Quiz answers keyed by question id"
+    },
+    "tier": {
+      "type": "string",
+      "enum": [
+        "Spark",
+        "Builder",
+        "Architect",
+        "Operator",
+        "Pioneer"
+      ],
+      "description": "Assigned tier on the skills ladder"
+    },
+    "score": {
+      "type": "number",
+      "description": "Numeric score 0-100"
+    },
+    "next_steps": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "AI-generated next steps with title, description, resources, difficulty"
+    },
+    "tools_used": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tools the user currently uses"
+    },
+    "completed": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "user_type"
+  ]
+}
