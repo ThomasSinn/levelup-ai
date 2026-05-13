@@ -1,0 +1,75 @@
+{
+  "name": "TeamMember",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "description": "Full name of the team member"
+    },
+    "email": {
+      "type": "string",
+      "description": "Work email"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "IC",
+        "Team Lead",
+        "Senior Manager",
+        "Director"
+      ],
+      "description": "Role in the company hierarchy"
+    },
+    "department": {
+      "type": "string",
+      "description": "Department name"
+    },
+    "manager_id": {
+      "type": "string",
+      "description": "ID of the direct manager (references another TeamMember)"
+    },
+    "ai_tier": {
+      "type": "string",
+      "enum": [
+        "Spark",
+        "Builder",
+        "Architect",
+        "Operator",
+        "Pioneer"
+      ],
+      "description": "Current AI skills tier"
+    },
+    "ai_score": {
+      "type": "number",
+      "description": "Numeric AI skills score 0-100"
+    },
+    "tools_used": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "AI tools the person currently uses"
+    },
+    "access_level": {
+      "type": "string",
+      "enum": [
+        "None",
+        "Basic",
+        "Standard",
+        "Advanced",
+        "Full"
+      ],
+      "description": "Current AI tool access level"
+    },
+    "last_assessment_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of last AI skills assessment"
+    }
+  },
+  "required": [
+    "full_name",
+    "email",
+    "role"
+  ]
+}

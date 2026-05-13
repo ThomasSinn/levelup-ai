@@ -9,6 +9,7 @@ import Landing from './pages/Landing';
 import Quiz from './pages/Quiz';
 import Results from './pages/Results';
 import NavBar from './components/NavBar';
+import ManagerDashboard from './pages/ManagerDashboard';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -38,6 +39,7 @@ const AuthenticatedApp = () => {
           <Route path="/" element={<Landing />} />
           <Route path="/quiz" element={<Quiz />} />
           <Route path="/results/:id" element={<Results />} />
+          <Route path="/manager-dashboard" element={<ManagerDashboard />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>

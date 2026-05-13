@@ -1,0 +1,36 @@
+{
+  "name": "User",
+  "type": "object",
+  "properties": {
+    "role": {
+      "type": "string",
+      "enum": [
+        "IC",
+        "Team Lead",
+        "Senior Manager",
+        "Director",
+        "admin"
+      ],
+      "description": "Role in the company hierarchy"
+    },
+    "manager_id": {
+      "type": "string",
+      "description": "ID of the user's direct manager"
+    },
+    "department": {
+      "type": "string",
+      "description": "Department name"
+    },
+    "ai_tier": {
+      "type": "string",
+      "enum": [
+        "Spark",
+        "Builder",
+        "Architect",
+        "Operator",
+        "Pioneer"
+      ],
+      "description": "Current AI skills tier"
+    }
+  }
+}
