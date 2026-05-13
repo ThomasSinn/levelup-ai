@@ -8,6 +8,7 @@ import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import Landing from './pages/Landing';
 import Quiz from './pages/Quiz';
 import Results from './pages/Results';
+import NavBar from './components/NavBar';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -30,12 +31,17 @@ const AuthenticatedApp = () => {
   }
 
   return (
-    <Routes>
-      <Route path="/" element={<Landing />} />
-      <Route path="/quiz" element={<Quiz />} />
-      <Route path="/results/:id" element={<Results />} />
-      <Route path="*" element={<PageNotFound />} />
-    </Routes>
+    <>
+      <NavBar />
+      <div className="pt-14">
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/quiz" element={<Quiz />} />
+          <Route path="/results/:id" element={<Results />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </div>
+    </>
   );
 };
 
